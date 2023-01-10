@@ -5,6 +5,7 @@ export type Game = {
     playersturn: PlayerEnum;
     board: Board;
     finished: boolean;
+    winCondition: string[] | null;
     draw?: boolean;
 };
 

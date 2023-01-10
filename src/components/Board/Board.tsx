@@ -1,5 +1,6 @@
 import { Center, HStack, VStack } from 'native-base';
 import React from 'react';
+import { Dimensions, Platform } from 'react-native';
 
 import { Game } from '../../types/Game';
 import { PlayerEnum } from '../../types/Player';
@@ -11,25 +12,27 @@ type BoardProps = {
     game: Game;
 };
 export const Board: React.FC<BoardProps> = ({game}) => {
-    // TODO
     const size = {
-        sm: 50,
-        md: 200,
-        lg: 400,
-        xl: 600
+        sm: 10,
+        md: 50,
+        lg: 200,
+        xl: 200
     };
     const rows = [1, 2, 3];
     return (
-        <Center>
+        <Center p={5}>
             <VStack bg={'white'} p={5}>
                 {[1, 2, 3].map((col, columnIndex) => (
                     <HStack w={'100%'} key={`col_${columnIndex}`}>
                         {rows.map((row, rowIndex) => (
                             <BoardCell
+                                hasBackground={game.winCondition?.includes(
+                                    `${columnIndex}${rowIndex}`
+                                )}
                                 key={`BoardCell_${columnIndex}.${rowIndex}`}
                                 rowIndex={rowIndex}
                                 columnIndex={columnIndex}
-                                size={size}
+                                size={Platform.OS === 'web' ? size : 20}
                                 lastRow={columnIndex === 2}
                             >
                                 {game.board[`${columnIndex}${rowIndex}`] ? (

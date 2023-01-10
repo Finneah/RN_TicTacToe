@@ -2,7 +2,6 @@ import { Button, Center, FormControl, Input, View, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { MainStackParamList } from '../../Navigation/MainStack';
@@ -53,14 +52,18 @@ export const GameSettingsScreen: React.FC<GameSettingsScreenProps> = ({
                     <FormControl isInvalid={'player_one' in errors}>
                         <FormControl.Label
                             _text={{
+                                fontSize: 25,
                                 bold: true
                             }}
                         >
                             Player 1
                         </FormControl.Label>
                         <Input
+                            minWidth={250}
+                            fontSize={20}
                             variant="underlined"
                             placeholder="Player 1"
+                            value={formData.player_one}
                             onChangeText={(value) => {
                                 setData({...formData, player_one: value});
                                 if (value === undefined || value === '') {
@@ -90,13 +93,17 @@ export const GameSettingsScreen: React.FC<GameSettingsScreenProps> = ({
                     <FormControl isInvalid={'player_two' in errors}>
                         <FormControl.Label
                             _text={{
+                                fontSize: 25,
                                 bold: true
                             }}
                         >
                             Player 2
                         </FormControl.Label>
                         <Input
+                            minWidth={250}
+                            fontSize={20}
                             variant="underlined"
+                            value={formData.player_two}
                             placeholder="Player 2"
                             onChangeText={(value) => {
                                 setData({...formData, player_two: value});
@@ -125,6 +132,7 @@ export const GameSettingsScreen: React.FC<GameSettingsScreenProps> = ({
                         )}
                     </FormControl>
                     <Button
+                        size={'lg'}
                         disabled={
                             errors.player_one
                                 ? true

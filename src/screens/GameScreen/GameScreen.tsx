@@ -1,5 +1,5 @@
-import { Button, Center, Heading, Icon, IconButton, View } from 'native-base';
-import React, { useEffect } from 'react';
+import { Button, Center, Heading, View } from 'native-base';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -27,14 +27,15 @@ export const GameScreen: React.FC<GameScreenProps> = ({navigation}) => {
 
     return (
         <View
-            pt={10}
+            flex={1}
+            pt={5}
             bg={
                 game.playersturn === PlayerEnum.PLAYER_ONE
                     ? 'blue.100'
-                    : 'emerald.100'
+                    : 'orange.100'
             }
         >
-            <Center mb={10}>
+            <Center mb={5} px={2}>
                 {game.finished && (
                     <>
                         {game.draw ? (
@@ -48,7 +49,11 @@ export const GameScreen: React.FC<GameScreenProps> = ({navigation}) => {
                             } won the game`}</Heading>
                         )}
 
-                        <Button size={'lg'} onPress={handleRestartGame}>
+                        <Button
+                            variant={'ghost'}
+                            size={'lg'}
+                            onPress={handleRestartGame}
+                        >
                             {'Restart'}
                         </Button>
                     </>

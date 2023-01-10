@@ -12,8 +12,8 @@ const winConditions = [
     ['02', '11', '20']
 ];
 
-export const checkWin = (board: Board): boolean => {
-    let win = false;
+export const checkWin = (board: Board): string[] | null => {
+    let win = null;
     winConditions.forEach((winCondition) => {
         const p1HasWon =
             board[winCondition[0]] === 1 &&
@@ -24,7 +24,7 @@ export const checkWin = (board: Board): boolean => {
             board[winCondition[1]] === 2 &&
             board[winCondition[2]] === 2;
         if (p1HasWon || p2HasWon) {
-            win = true;
+            win = winCondition;
         }
     });
     return win;

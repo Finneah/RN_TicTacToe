@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Box, extendTheme, NativeBaseProvider } from 'native-base';
+import { Box, extendTheme, NativeBaseProvider, View } from 'native-base';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';

@@ -1,5 +1,6 @@
 import { Button, Center } from 'native-base';
 import React, { ReactNode } from 'react';
+import { Dimensions, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { gameSlice } from '../../redux/game/game.slice';
@@ -9,13 +10,17 @@ import { Game } from '../../types/Game';
 type BoardCellProps = {
     rowIndex: number;
     columnIndex: number;
-    size: {
-        sm: number;
-        md: number;
-        lg: number;
-        xl: number;
-    };
+
+    size:
+        | {
+              sm: number;
+              md: number;
+              lg: number;
+              xl: number;
+          }
+        | number;
     lastRow: boolean;
+    hasBackground?: boolean;
     children?: ReactNode;
 };
 export const BoardCell: React.FC<BoardCellProps> = ({
@@ -23,6 +28,7 @@ export const BoardCell: React.FC<BoardCellProps> = ({
     columnIndex,
     size,
     lastRow,
+    hasBackground,
     children
 }) => {
     const dispatch = useDispatch();
@@ -36,8 +42,10 @@ export const BoardCell: React.FC<BoardCellProps> = ({
 
         dispatch(gameSlice.actions.play(g));
     };
+
     return (
         <Center
+            bg={hasBackground ? 'green.300' : undefined}
             w={size}
             h={size}
             borderColor={'primary.400'}
