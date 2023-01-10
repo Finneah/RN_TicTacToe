@@ -13,6 +13,12 @@ import { Player, PlayerEnum } from '../../types/Player';
 
 type GameScreenProps = NativeStackScreenProps<MainStackParamList, 'Game'>;
 export const GameScreen: React.FC<GameScreenProps> = ({navigation}) => {
+    // Compromise => responsive is not perfect, no accessibility tested
+    // state type could be RecursivePartial
+    // no error Boundary
+    // no loading or error handling
+    // no i18n
+
     const dispatch = useDispatch();
     const players: Player[] | null = useSelector(
         (state: RootState) => state.players.data

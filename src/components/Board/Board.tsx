@@ -1,6 +1,6 @@
 import { Center, HStack, VStack } from 'native-base';
 import React from 'react';
-import { Dimensions, Platform } from 'react-native';
+import { Platform } from 'react-native';
 
 import { Game } from '../../types/Game';
 import { PlayerEnum } from '../../types/Player';
@@ -18,13 +18,13 @@ export const Board: React.FC<BoardProps> = ({game}) => {
         lg: 200,
         xl: 200
     };
-    const rows = [1, 2, 3];
+
     return (
         <Center p={5}>
             <VStack bg={'white'} p={5}>
                 {[1, 2, 3].map((col, columnIndex) => (
                     <HStack w={'100%'} key={`col_${columnIndex}`}>
-                        {rows.map((row, rowIndex) => (
+                        {[1, 2, 3].map((row, rowIndex) => (
                             <BoardCell
                                 hasBackground={game.winCondition?.includes(
                                     `${columnIndex}${rowIndex}`

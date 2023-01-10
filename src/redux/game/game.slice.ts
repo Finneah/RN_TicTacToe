@@ -16,7 +16,8 @@ const initialState: GameSliceState = {
     loading: false,
     error: null
 };
-
+// Compromize => no reset Game Cache
+// no Game turns showed
 export const gameSlice = createSlice({
     name: 'game',
     initialState,

@@ -9,13 +9,13 @@ const initialState: PlayersSliceState = {
     loading: false,
     error: null
 };
+// Compromize => no unit test player actions
 
 export const playersSlice = createSlice({
     name: 'players',
     initialState,
     reducers: {
         setPlayers: (state, action: PayloadAction<Player[]>) => {
-            // TODO not more then two players
             state.data = action.payload;
         }
     }

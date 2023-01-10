@@ -44,7 +44,8 @@ export const GameSettingsScreen: React.FC<GameSettingsScreenProps> = ({
         );
         navigation.navigate('Game');
     };
-
+    // Compromise => havent add Inputs as Components
+    // error Handling and formData have no type
     return (
         <View pt={10}>
             <Center mb={10}>

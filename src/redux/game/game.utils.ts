@@ -11,7 +11,7 @@ const winConditions = [
     ['00', '11', '22'],
     ['02', '11', '20']
 ];
-
+// Compromize => no documentation
 export const checkWin = (board: Board): string[] | null => {
     let win = null;
     winConditions.forEach((winCondition) => {
@@ -30,6 +30,7 @@ export const checkWin = (board: Board): string[] | null => {
     return win;
 };
 
+// Compromize => no documentation
 export const checkDraw = (board: Board): boolean => {
     if (Object.keys(board).length === 9) {
         if (
