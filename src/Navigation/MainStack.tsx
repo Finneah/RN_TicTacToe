@@ -24,19 +24,16 @@ const MainStack = () => {
 
     return (
         <Stack.Navigator>
-            {players.length === 0 ? (
-                <Stack.Screen
-                    name="GameSettings"
-                    options={{title: 'TicTacToe'}}
-                    component={GameSettingsScreen}
-                />
-            ) : (
-                <Stack.Screen
-                    name="Game"
-                    options={{title: 'TicTacToe'}}
-                    component={GameScreen}
-                />
-            )}
+            <Stack.Screen
+                name="GameSettings"
+                options={{title: 'TicTacToe'}}
+                component={GameSettingsScreen}
+            />
+            <Stack.Screen
+                name="Game"
+                options={{title: 'TicTacToe'}}
+                component={GameScreen}
+            />
         </Stack.Navigator>
     );
 };

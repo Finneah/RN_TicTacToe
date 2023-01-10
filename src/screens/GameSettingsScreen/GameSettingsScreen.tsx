@@ -138,7 +138,7 @@ export const GameSettingsScreen: React.FC<GameSettingsScreenProps> = ({
                             errors.player_one || errors.player_two ? 0.5 : 1
                         }
                     >
-                        Start Game
+                        {`Start Game`}
                     </Button>
                 </VStack>
             </Center>

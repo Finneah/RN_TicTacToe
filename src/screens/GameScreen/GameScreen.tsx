@@ -2,7 +2,6 @@ import { Button, Center, Heading, Icon, IconButton, View } from 'native-base';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Ionicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { Board } from '../../components/Board/Board';
@@ -22,20 +21,6 @@ export const GameScreen: React.FC<GameScreenProps> = ({navigation}) => {
         (state: RootState) => state.game.data
     );
 
-    useEffect(() => {
-        // Use `setOptions` to update the button that we previously specified
-        // Now the button includes an `onPress` handler to update the count
-        navigation.setOptions({
-            headerRight: () => (
-                <IconButton
-                    size={'md'}
-                    icon={<Icon as={Ionicons} name="settings-outline" />}
-                    onPress={() => navigation.navigate('GameSettings')}
-                />
-            )
-        });
-    }, [navigation]);
-
     const handleRestartGame = () => {
         dispatch(gameSlice.actions.restart());
     };
@@ -50,18 +35,25 @@ export const GameScreen: React.FC<GameScreenProps> = ({navigation}) => {
             }
         >
             <Center mb={10}>
-                {game.finished ? (
+                {game.finished && (
                     <>
-                        <Heading>{`Gratulation, ${
-                            players.find(
-                                (player) => player.player === game.playersturn
-                            )?.name
-                        } won the game`}</Heading>
+                        {game.draw ? (
+                            <Heading>{`Draw! No one has won`}</Heading>
+                        ) : (
+                            <Heading>{`Gratulation, ${
+                                players.find(
+                                    (player) =>
+                                        player.player === game.playersturn
+                                )?.name
+                            } won the game`}</Heading>
+                        )}
+
                         <Button size={'lg'} onPress={handleRestartGame}>
                             {'Restart'}
                         </Button>
                     </>
-                ) : (
+                )}
+                {!game.finished && !game.draw && (
                     <Heading>{`It\'s ${
                         players.find(
                             (player) => player.player === game.playersturn
