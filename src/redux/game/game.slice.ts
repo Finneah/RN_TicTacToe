@@ -26,7 +26,7 @@ export const gameSlice = createSlice({
         play: (state, action: PayloadAction<Game>) => {
             state.data.board = action.payload.board;
             const winCondition = checkWin(state.data.board);
-            if (checkWin(state.data.board)) {
+            if (winCondition) {
                 state.data.finished = true;
                 state.data.winCondition = winCondition;
             }

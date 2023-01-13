@@ -98,12 +98,12 @@ describe('redux game reducer', () => {
                 '00': PlayerEnum.PLAYER_ONE,
                 '01': PlayerEnum.PLAYER_TWO,
                 '02': PlayerEnum.PLAYER_ONE,
-                '11': PlayerEnum.PLAYER_TWO,
-                '12': PlayerEnum.PLAYER_ONE,
-                '13': PlayerEnum.PLAYER_TWO,
-                '14': PlayerEnum.PLAYER_ONE,
-                '15': PlayerEnum.PLAYER_TWO,
-                '16': PlayerEnum.PLAYER_ONE
+                '10': PlayerEnum.PLAYER_TWO,
+                '11': PlayerEnum.PLAYER_ONE,
+                '12': PlayerEnum.PLAYER_TWO,
+                '20': PlayerEnum.PLAYER_ONE,
+                '21': PlayerEnum.PLAYER_TWO,
+                '22': PlayerEnum.PLAYER_ONE
             },
             finished: false,
             winCondition: null
@@ -112,6 +112,7 @@ describe('redux game reducer', () => {
             gameSlice.reducer(initialState, gameSlice.actions.restart()).data
         ).toEqual({
             ...mockGame,
+            playersturn: 2,
             draw: false,
             board: {},
             turn: 2
