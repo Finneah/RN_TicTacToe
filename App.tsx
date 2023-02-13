@@ -1,25 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { Box, extendTheme, NativeBaseProvider, View } from 'native-base';
+import {StatusBar} from 'expo-status-bar';
+import {Box, extendTheme, NativeBaseProvider, View} from 'native-base';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Provider } from 'react-redux';
+import {StyleSheet} from 'react-native';
+import {Provider} from 'react-redux';
 
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 import MainStack from './src/Navigation/MainStack';
-import { store } from './src/redux/store';
 
 const App = () => {
     return (
         <>
             <StatusBar style="auto" />
-            <Provider store={store}>
-                <NativeBaseProvider>
-                    <NavigationContainer>
-                        <MainStack />
-                    </NavigationContainer>
-                </NativeBaseProvider>
-            </Provider>
+
+            <NativeBaseProvider>
+                <NavigationContainer>
+                    <MainStack />
+                </NavigationContainer>
+            </NativeBaseProvider>
         </>
     );
 };

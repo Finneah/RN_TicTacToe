@@ -1,12 +1,7 @@
 import * as React from 'react';
 
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {
-    act,
-    fireEvent,
-    RenderAPI,
-    waitFor
-} from '@testing-library/react-native';
+import {RenderAPI} from '@testing-library/react-native';
 
 import {render} from '../../utils/test.utils';
 import {GameScreen} from './GameScreen';

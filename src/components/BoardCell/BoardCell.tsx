@@ -1,10 +1,8 @@
-import { Button, Center } from 'native-base';
-import React, { ReactNode } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {observer} from 'mobx-react-lite';
+import {Button, Center} from 'native-base';
+import React, {ReactNode} from 'react';
 
-import { gameSlice } from '../../redux/game/game.slice';
-import { RootState } from '../../redux/root/root.types';
-import { Game } from '../../types/Game';
+import {GameStoreContext, useGameStore} from '../../store/game/game.store';
 
 type BoardCellProps = {
     rowIndex: number;
@@ -22,48 +20,46 @@ type BoardCellProps = {
     children?: ReactNode;
 };
 
-export const BoardCell: React.FC<BoardCellProps> = ({
-    rowIndex,
-    columnIndex,
-    size,
-    lastRow,
-    hasBackground,
-    children
-}) => {
-    const dispatch = useDispatch();
+export const BoardCell: React.FC<BoardCellProps> = observer(
+    ({rowIndex, columnIndex, size, lastRow, hasBackground, children}) => {
+        const gameStore = useGameStore();
 
-    const game: Game | null = useSelector(
-        (state: RootState) => state.game.data
-    );
+        return (
+            <GameStoreContext.Provider value={gameStore}>
+                <Center
+                    bg={hasBackground ? 'green.300' : undefined}
+                    w={size}
+                    h={size}
+                    borderColor={'primary.400'}
+                    borderBottomWidth={lastRow ? undefined : 1}
+                    borderRightWidth={rowIndex !== 2 ? 1 : undefined}
+                >
+                    {children || (
+                        <Button
+                            disabled={
+                                gameStore.game.finished ||
+                                gameStore.game.board[
+                                    `${columnIndex}${rowIndex}`
+                                ]
+                                    ? true
+                                    : false
+                            }
+                            variant="ghost"
+                            size={size}
+                            onPress={() => {
+                                let board = {
+                                    ...gameStore.game.board,
+                                    [`${columnIndex}${rowIndex}`]:
+                                        gameStore.game.playersturn
+                                };
+                                let newGame = {...gameStore.game, board};
 
-    const handlePlay = (bordIndex: string) => {
-        let board = {...game.board, [bordIndex]: game.playersturn};
-        let newGame = {...game, board};
-
-        dispatch(gameSlice.actions.play(newGame));
-    };
-
-    return (
-        <Center
-            bg={hasBackground ? 'green.300' : undefined}
-            w={size}
-            h={size}
-            borderColor={'primary.400'}
-            borderBottomWidth={lastRow ? undefined : 1}
-            borderRightWidth={rowIndex !== 2 ? 1 : undefined}
-        >
-            {children || (
-                <Button
-                    disabled={
-                        game.finished || game.board[`${columnIndex}${rowIndex}`]
-                            ? true
-                            : false
-                    }
-                    variant="ghost"
-                    size={size}
-                    onPress={() => handlePlay(`${columnIndex}${rowIndex}`)}
-                />
-            )}
-        </Center>
-    );
-};
+                                gameStore.play(newGame);
+                            }}
+                        />
+                    )}
+                </Center>
+            </GameStoreContext.Provider>
+        );
+    }
+);
