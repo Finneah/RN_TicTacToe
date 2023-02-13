@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { RenderAPI } from '@testing-library/react-native';
+import {RenderAPI} from '@testing-library/react-native';
 
-import { render } from '../../../utils/test.utils';
-import { BoardCell } from './BoardCell';
+import {render} from '../../utils/test.utils';
+import {BoardCell} from './BoardCell';
 
 let screen: RenderAPI;
 

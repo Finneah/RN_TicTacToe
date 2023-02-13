@@ -1,12 +1,12 @@
-import { NativeBaseProvider } from 'native-base';
-import React, { ReactNode } from 'react';
-import { Provider } from 'react-redux';
+import {NativeBaseProvider} from 'native-base';
+import React, {ReactNode} from 'react';
+import {Provider} from 'react-redux';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { render } from '@testing-library/react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {render} from '@testing-library/react-native';
 
-import { RootState, store } from '../src/redux/store';
-import { PlayerEnum } from '../src/types/Player';
+import {RootState, store} from '../redux/store';
+import {PlayerEnum} from '../types/Player';
 
 const inset = {
     frame: {x: 0, y: 0, width: 0, height: 0},

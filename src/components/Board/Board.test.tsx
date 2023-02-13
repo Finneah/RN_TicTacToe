@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { RenderAPI } from '@testing-library/react-native';
+import {RenderAPI} from '@testing-library/react-native';
 
-import { render } from '../../../utils/test.utils';
-import { PlayerEnum } from '../../types/Player';
-import { Board } from './Board';
+import {render} from '../../utils/test.utils';
+import {PlayerEnum} from '../../types/Player';
+import {Board} from './Board';
 
 let screen: RenderAPI;
 const mockGame = {

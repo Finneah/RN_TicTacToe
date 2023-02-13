@@ -1,10 +1,15 @@
 import * as React from 'react';
 
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { act, fireEvent, RenderAPI, waitFor } from '@testing-library/react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {
+    act,
+    fireEvent,
+    RenderAPI,
+    waitFor
+} from '@testing-library/react-native';
 
-import { render } from '../../../utils/test.utils';
-import { GameSettingsScreen } from './GameSettingsScreen';
+import {render} from '../../utils/test.utils';
+import {GameSettingsScreen} from './GameSettingsScreen';
 
 let screen: RenderAPI;
 
